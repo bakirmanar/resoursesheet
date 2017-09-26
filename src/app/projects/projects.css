@@ -1,0 +1,17 @@
+.project-edit-btn {
+    display: block;
+}
+.project-edit-btn + .project-edit-btn{
+    margin-top: 10px;
+}
+
+.color-input input{
+    padding-right: 30px;
+}
+.color-input-example {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    height: 20px;
+    width: 20px;
+}

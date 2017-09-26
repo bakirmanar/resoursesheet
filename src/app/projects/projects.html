@@ -1,0 +1,25 @@
+<md-card>
+    <div *ngIf="!editMode" class="projects-nav">
+        <button md-button *ngFor="let project of projects; index as i;" class="project-edit-btn"
+                [ngStyle]="{'background': project.color}" (click)="editProject(i)">{{project.name}}</button>
+        <button md-raised-button class="project-edit-btn" (click)="addProject()">Add new project</button>
+    </div>
+    <form *ngIf="editMode">
+        <md-form-field>
+            <input mdInput [(ngModel)]="editingProject.name" name="projectName" placeholder="Project name" required />
+        </md-form-field>
+        <md-form-field>
+            <input mdInput [(ngModel)]="editingProject.shortName" name="projectShortName" placeholder="Short name" required />
+        </md-form-field>
+        <md-form-field class="color-input">
+            <input mdInput [(ngModel)]="editingProject.color" name="projectColor" placeholder="Color" required />
+            <div class="color-input-example" [ngStyle]="{background: editingProject.color}"></div>
+        </md-form-field>
+        <div>
+            <button md-raised-button color="primary" (click)="saveProject(editingProject)">Save project</button>
+            <button md-raised-button (click)="cancelEdit()">Cancel</button>
+            <button md-raised-button color="warn" (click)="deleteProject(editingProject.id)">Delete</button>
+        </div>
+    </form>
+</md-card>
+
