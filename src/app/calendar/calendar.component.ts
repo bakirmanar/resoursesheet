@@ -21,6 +21,7 @@ interface workload {
     id: string,
     userId: string,
     projectId: string,
+    hours: number,
     from: string,
     to: string
 }
@@ -148,7 +149,8 @@ export class calendarComponent {
             }
 
             targetMonthData[i].workloads[load.userId].push({
-                projectId: load.projectId
+                projectId: load.projectId,
+                hours: load.hours
             })
         }
         this.months[targetMonth] = targetMonthData;

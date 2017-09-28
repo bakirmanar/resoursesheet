@@ -6,16 +6,19 @@
             </div>
         </div>
         <div class="calendar-body">
-            <div *ngFor="let day of daysToShow" class="calendar-day">
-                <div class="calendar-day-head">
+            <div class="calendar-days">
+                <div *ngFor="let day of daysToShow" class="calendar-day">
                     <div class="calendar-day-name">{{day.monthName}}</div>
                     <div class="calendar-day-date">{{day.date}}</div>
                     <div class="calendar-day-name">{{day.dayName}}</div>
                 </div>
-                <div class="calendar-day-body">
-                    <div *ngFor="let user of users" class="calendar-user-day">
+            </div>
+            <div *ngFor="let user of users" class="calendar-user">
+                <div *ngFor="let day of daysToShow" class="calendar-user-day">
+                    <div class="calendar-day-body">
                         <div *ngFor="let load of day.workloads[user.id]" class="calendar-user-load"
-                             [ngStyle]="{background: projObj[load.projectId].color}" title="{{projObj[load.projectId].name}}">
+                             [ngStyle]="{background: projObj[load.projectId].color, 'line-height': (load.hours * 10) + 'px'}"
+                             title="{{projObj[load.projectId].name}}">
                             {{projObj[load.projectId].shortName}}
                         </div>
                     </div>

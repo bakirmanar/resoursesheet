@@ -2,7 +2,6 @@
     position: relative;
     max-width: 100%;
     padding-left: 150px;
-
     white-space: nowrap;
 }
 
@@ -16,7 +15,7 @@
 }
 .calendar .calendar-side-item {
     position: relative;
-    height: 100px;
+    height: 90px;
 }
 
 .calendar .calendar-item-title {
@@ -32,34 +31,41 @@
 .calendar .calendar-body {
     overflow-x: auto;
 }
+.calendar .calendar-days {
 
+}
 .calendar .calendar-day {
     display: inline-block;
-    min-width: 100px;
+    width: 100px;
+    height: 60px;
+    padding: 5px;
     border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
     vertical-align: top;
     text-align: center;
 }
 
 
-.calendar .calendar-day-head {
-    height: 60px;
-    padding: 5px;
-    border-bottom: 1px solid #000;
+.calendar .calendar-user {
+    min-height: 90px;
 }
-
 .calendar .calendar-user-day {
-    display: flex;
-    height: 100px;
+    display: inline-block;
+    width: 100px;
+    min-height: 90px;
     padding: 5px 0;
-    line-height: 90px;
+    border-right: 1px solid #000;
+    vertical-align: top;
+    line-height: 80px;
 }
 .calendar .calendar-user-load {
     min-width: 30px;
     width: 100%;
+    line-height: 10px;
+    text-align: center;
 }
 
-.calendar .calendar-side-item:nth-child(odd),
-.calendar .calendar-user-day:nth-child(odd) {
+.calendar .calendar-side-item:nth-child(even),
+.calendar .calendar-user:nth-child(odd) .calendar-user-day{
     background: #f6f6f6;;
 }
