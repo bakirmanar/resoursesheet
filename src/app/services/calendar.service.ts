@@ -15,6 +15,7 @@ export class CalendarService {
                 year: date.year(),
                 date: this.zeroBased(day),
                 month: this.zeroBased(month),
+                monthName: date.format('MMM'),
                 day: date.day(),
                 dayName: date.format('ddd'),
                 workloads: []

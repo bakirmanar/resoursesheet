@@ -5,12 +5,12 @@
                 <div class="calendar-item-title">{{user.name}}</div>
             </div>
         </div>
-        <div class="calendar-body" infiniteScroll (scrolled)="onScrollEnd()" (scrolledUp)="onScrollUp()"
-             [scrollWindow]="false" [horizontal]="true" infiniteScrollDisabled="true">
+        <div class="calendar-body">
             <div *ngFor="let day of daysToShow" class="calendar-day">
                 <div class="calendar-day-head">
-                    <div class="calendar-day-name">{{day.dayName}}</div>
+                    <div class="calendar-day-name">{{day.monthName}}</div>
                     <div class="calendar-day-date">{{day.date}}</div>
+                    <div class="calendar-day-name">{{day.dayName}}</div>
                 </div>
                 <div class="calendar-day-body">
                     <div *ngFor="let user of users" class="calendar-user-day">
@@ -23,10 +23,10 @@
             </div>
         </div>
         <div class="calendar-footer">
-            <button md-raised-button color="primary" (click)="onScrollUp()">
+            <button md-raised-button color="primary" (click)="loadPrevMonth()">
                 Load previous
             </button>
-            <button md-raised-button color="primary" (click)="onScrollEnd()">
+            <button md-raised-button color="primary" (click)="loadNextMonth()">
                 Load next
             </button>
         </div>

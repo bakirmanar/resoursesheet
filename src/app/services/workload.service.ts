@@ -30,7 +30,7 @@ export class WorkloadService {
             id: "wl3",
             userId: "us2",
             projectId: "p2",
-            from: "2017/09/01",
+            from: "2017/08/01",
             to: "2017/10/05"
         },
         {

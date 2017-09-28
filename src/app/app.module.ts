@@ -4,7 +4,6 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCardModule, MdInputModule, MdTableModule, MdToolbarModule} from '@angular/material';
 import {FormsModule, NgModel} from '@angular/forms';
-import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 import {AppComponent} from './app.component';
 import {calendarComponent} from "./calendar/calendar.component";
@@ -46,7 +45,6 @@ let imports = [
     MdTableModule,
     MdToolbarModule,
     FormsModule,
-    InfiniteScrollModule,
     RouterModule.forRoot(routes)
 ];
 
