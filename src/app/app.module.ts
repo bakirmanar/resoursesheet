@@ -2,11 +2,13 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCardModule, MdInputModule, MdTableModule, MdToolbarModule} from '@angular/material';
+import {MdButtonModule, MdCardModule, MdInputModule, MdTableModule, MdToolbarModule, MatDialogModule,
+    MatIconModule, MatSelectModule, MatDatepickerModule, MdNativeDateModule} from '@angular/material';
 import {FormsModule, NgModel} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {calendarComponent} from "./calendar/calendar.component";
+import {newWorkloadComponent, newWorkloadDialog} from "./calendar/newWorkload/newWorkload.component";
 import {projectComponent} from "./projects/projects.component";
 import {userComponent} from "./users/users.component";
 
@@ -44,7 +46,12 @@ let imports = [
     MdInputModule,
     MdTableModule,
     MdToolbarModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MdNativeDateModule,
     FormsModule,
+    MatDialogModule,
     RouterModule.forRoot(routes)
 ];
 
@@ -53,8 +60,11 @@ let imports = [
         AppComponent,
         calendarComponent,
         projectComponent,
-        userComponent
+        userComponent,
+        newWorkloadComponent,
+        newWorkloadDialog
     ],
+    entryComponents: [newWorkloadDialog],
     imports: imports,
     providers: [
         CalendarService,

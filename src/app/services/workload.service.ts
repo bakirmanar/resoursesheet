@@ -67,4 +67,7 @@ export class WorkloadService {
         return this.loads;
     }
 
+    addWorkload(load: workload): void {
+        this.loads.push(load);
+    }
 }

@@ -76,6 +76,53 @@ export class calendarComponent {
         console.log("DAYS TO SHOW", this.daysToShow);
     }
 
+    loadNextMonth():void  {
+        if (!this.loadingOnEnd){
+            let lastDay: day = this.daysToShow[this.daysToShow.length -1],
+                lastDayMonth = Number.parseInt(lastDay.month),
+                loadYear = lastDay.year,
+                loadMonth = lastDayMonth + 1;
+
+            if (loadMonth === 11) {
+                loadMonth = 0;
+                loadYear++;
+            }
+
+            this.loadMonth(loadYear, loadMonth);
+        }
+    }
+
+    loadPrevMonth():void  {
+        if (!this.loadingOnStart) {
+            let lastDay: day = this.daysToShow[0],
+                lastDayMonth = Number.parseInt(lastDay.month),
+                loadYear = lastDay.year,
+                loadMonth = lastDayMonth - 1;
+
+            if (loadMonth === 0) {
+                loadMonth = 11;
+                loadYear--;
+            }
+
+            this.loadMonth(loadYear, loadMonth);
+        }
+    }
+
+    onWorkloadAdded(load: workload):void {
+        this.loads = this.workloadS.getWorkloads();
+
+        let from = moment(load.from),
+            to = moment(load.to);
+
+        for (let m = from; m < to; m.month(m.month() + 1)) {
+            let monthStr: string = m.format("YYYY/MM");
+            if(this.months[monthStr]) {
+                this.putWorkloadsInMonth(load, monthStr);
+            }
+        }
+        this.prepareDaysToShow();
+    };
+
     private loadMonth(year:number, month:number): void {
         let monthStr = year + '/' + this.calendarS.zeroBased(month + 1);
         this.months[monthStr] = this.calendarS.getDaysArray(year, month);
@@ -188,37 +235,7 @@ export class calendarComponent {
         this.daysToShow =  result;
     }
 
-    loadNextMonth() {
-        if (!this.loadingOnEnd){
-            let lastDay: day = this.daysToShow[this.daysToShow.length -1],
-                lastDayMonth = Number.parseInt(lastDay.month),
-                loadYear = lastDay.year,
-                loadMonth = lastDayMonth + 1;
+    private putWorkload(): void {
 
-            if (loadMonth === 11) {
-                loadMonth = 0;
-                loadYear++;
-            }
-
-            this.loadMonth(loadYear, loadMonth);
-            console.log(this.months);
-        }
-    }
-
-    loadPrevMonth() {
-        if (!this.loadingOnStart) {
-            let lastDay: day = this.daysToShow[0],
-                lastDayMonth = Number.parseInt(lastDay.month),
-                loadYear = lastDay.year,
-                loadMonth = lastDayMonth - 1;
-
-            if (loadMonth === 0) {
-                loadMonth = 11;
-                loadYear--;
-            }
-
-            this.loadMonth(loadYear, loadMonth);
-            console.log(this.months);
-        }
     }
 }
