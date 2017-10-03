@@ -36,7 +36,7 @@ export class UserService {
     }
 
     saveUser(us: user): void {
-        let index: number = this.getById(us.id);
+        let index: number = this.getIndex(us.id);
 
         if (index !== -1) {
             this.users[index] = Object.assign({}, us);
@@ -44,14 +44,14 @@ export class UserService {
     }
 
     deleteUser(id: string): void {
-        let index: number = this.getById(id);
+        let index: number = this.getIndex(id);
 
         if (index !== -1) {
             this.users.splice(index, 1);
         }
     }
 
-    getById(id: string): number {
+    private getIndex(id: string): number {
         let res: number = -1;
 
         this.users.some((item: user, i) => {
@@ -64,5 +64,13 @@ export class UserService {
         });
 
         return res;
+    }
+
+    getById(id: string): user {
+        for (let user of this.users) {
+            if (user.id == id) {
+                return user;
+            }
+        }
     }
 }

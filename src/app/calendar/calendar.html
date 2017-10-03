@@ -18,7 +18,7 @@
                     <div class="calendar-day-body">
                         <div *ngFor="let load of day.workloads[user.id]" class="calendar-user-load"
                              [ngStyle]="{background: projObj[load.projectId].color, 'line-height': (load.hours * 10) + 'px'}"
-                             title="{{projObj[load.projectId].name}}">
+                             title="{{projObj[load.projectId].name}}" (click)="editWorkload(load.id)">
                             {{projObj[load.projectId].shortName}}
                         </div>
                     </div>

@@ -61,6 +61,7 @@
 .calendar .calendar-user-load {
     min-width: 30px;
     width: 100%;
+    cursor: pointer;
     line-height: 10px;
     text-align: center;
 }

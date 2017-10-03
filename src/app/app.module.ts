@@ -9,6 +9,7 @@ import {FormsModule, NgModel} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {calendarComponent} from "./calendar/calendar.component";
 import {newWorkloadComponent, newWorkloadDialog} from "./calendar/newWorkload/newWorkload.component";
+import {editWorkloadDialog} from "./calendar/editWorkload/editWorkload.component";
 import {projectComponent} from "./projects/projects.component";
 import {userComponent} from "./users/users.component";
 
@@ -62,9 +63,10 @@ let imports = [
         projectComponent,
         userComponent,
         newWorkloadComponent,
-        newWorkloadDialog
+        newWorkloadDialog,
+        editWorkloadDialog
     ],
-    entryComponents: [newWorkloadDialog],
+    entryComponents: [newWorkloadDialog, editWorkloadDialog],
     imports: imports,
     providers: [
         CalendarService,

@@ -70,4 +70,44 @@ export class WorkloadService {
     addWorkload(load: workload): void {
         this.loads.push(load);
     }
+
+    saveWorkload(wload: workload): void {
+        for (let i = 0; i < this.loads.length; i++) {
+            if (this.loads[i].id == wload.id) {
+                this.loads[i] = wload;
+                break;
+            }
+        }
+    }
+
+    deleteWorkload(id: string): void {
+        let index = this.getIndex(id);
+
+        if (index !== -1) {
+            this.loads.splice(index, 1);
+        }
+    }
+
+    private getIndex(id: string): number {
+        let res: number = -1;
+
+        this.loads.some((load: workload, i) => {
+            if (load.id === id) {
+                res = i;
+                return true;
+            }
+
+            return false
+        });
+
+        return res;
+    }
+
+    getById(id: string): workload {
+        for (let load of this.loads) {
+            if (load.id == id) {
+                return load;
+            }
+        }
+    }
 }

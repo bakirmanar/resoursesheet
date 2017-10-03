@@ -2,6 +2,10 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 
+import {editWorkloadDialog} from './editWorkload/editWorkload.component';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+
+
 import {CalendarService} from '../services/calendar.service';
 import {UserService} from '../services/user.service';
 import {WorkloadService} from "../services/workload.service";
@@ -54,7 +58,7 @@ export class calendarComponent {
     loadingOnStart: boolean;
 
     constructor(private calendarS: CalendarService, private userS: UserService,
-                private workloadS: WorkloadService, private projectS: ProjectService) {
+                private workloadS: WorkloadService, private projectS: ProjectService, public dialog: MdDialog) {
         this.calendarBody = document.getElementsByClassName("calendar-body");
     }
 
@@ -117,11 +121,37 @@ export class calendarComponent {
         for (let m = from; m < to; m.month(m.month() + 1)) {
             let monthStr: string = m.format("YYYY/MM");
             if(this.months[monthStr]) {
-                this.putWorkloadsInMonth(load, monthStr);
+                this.putWorkloadsInMonth(load, monthStr, false);
             }
         }
         this.prepareDaysToShow();
     };
+
+    editWorkload(id:string):void {
+        let load:workload = this.workloadS.getById(id);
+        if (load) {
+            const dialogRef = this.dialog.open(editWorkloadDialog, {
+                data: {
+                    load: load
+                }
+            });
+
+            dialogRef.afterClosed().subscribe(data => {
+                if (data.load) {
+                    this.loads = this.workloadS.getWorkloads();
+                    this.redrawWorkload(data.load, data.isDeleted);
+                }
+            });
+        }
+    }
+
+    private redrawWorkload(load:workload, isDeleted:boolean):void {
+        _.each(this.months, (item, monthStr) => {
+            this.putWorkloadsInMonth(load, monthStr, isDeleted);
+        });
+
+        this.prepareDaysToShow();
+    }
 
     private loadMonth(year:number, month:number): void {
         let monthStr = year + '/' + this.calendarS.zeroBased(month + 1);
@@ -151,7 +181,7 @@ export class calendarComponent {
                 toDay:number = Number.parseInt(load.to.substr(8,2));
 
             if (this.isMonthBetween(monthStr, fromMonth, toMonth)) {
-                this.putWorkloadsInMonth(load, monthStr);
+                this.putWorkloadsInMonth(load, monthStr, false);
             }
         })
     }
@@ -185,20 +215,36 @@ export class calendarComponent {
         return isBetween;
     }
 
-    private putWorkloadsInMonth(load:workload, targetMonth: string) {
+    private putWorkloadsInMonth(load:workload, targetMonth: string, isDeleted:boolean) {
         let targetMonthData = this.months[targetMonth],
             start: number = this.getStartDay(load.from, targetMonth),
             end: number = this.getEndDay(load.to, targetMonth);
 
         for (let i = start - 1; i < end; i++) {
-            if (!targetMonthData[i].workloads[load.userId]) {
-                targetMonthData[i].workloads[load.userId] = [];
+            let userLoads = targetMonthData[i].workloads[load.userId] || [],
+                index = _.findIndex(userLoads, function(l:workload) {
+                    return l.id == load.id;
+                });
+
+            if (isDeleted) {
+                if (index !== -1) {
+                    userLoads.splice(index, 1);
+                }
+            } else {
+                let obj = {
+                    id: load.id,
+                    projectId: load.projectId,
+                    hours: load.hours,
+                };
+
+                if (index === -1) {
+                    userLoads.push(obj);
+                } else {
+                    userLoads[index] = obj;
+                }
             }
 
-            targetMonthData[i].workloads[load.userId].push({
-                projectId: load.projectId,
-                hours: load.hours
-            })
+            targetMonthData[i].workloads[load.userId] = userLoads;
         }
         this.months[targetMonth] = targetMonthData;
     }
@@ -233,9 +279,5 @@ export class calendarComponent {
         });
 
         this.daysToShow =  result;
-    }
-
-    private putWorkload(): void {
-
     }
 }
