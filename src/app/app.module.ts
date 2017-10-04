@@ -15,6 +15,7 @@ import {userComponent} from "./users/users.component";
 
 import {CalendarService} from './services/calendar.service';
 import {UserService} from './services/user.service';
+import {StorageService} from './services/storage.service';
 import {ProjectService} from './services/project.service';
 import {WorkloadService} from './services/workload.service';
 
@@ -72,7 +73,8 @@ let imports = [
         CalendarService,
         UserService,
         WorkloadService,
-        ProjectService
+        ProjectService,
+        StorageService
     ],
     bootstrap: [AppComponent]
 })

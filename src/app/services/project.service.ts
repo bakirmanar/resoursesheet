@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 
+import {StorageService} from './storage.service';
+
 interface project {
     id: string,
     name: string,
@@ -9,45 +11,18 @@ interface project {
 
 @Injectable()
 export class ProjectService {
-    projects: project[] = [
-        {
-            id: "p1",
-            name: "YayFon",
-            color: "#aad",
-            shortName: "YF"
-        },
-        {
-            id: "p2",
-            name: "NorthStar",
-            color: "#fdd",
-            shortName: "NS"
-        },
-        {
-            id: "p3",
-            name: "Bazilinga",
-            color: "#cad",
-            shortName: "BZ"
-        },
-        {
-            id: "p4",
-            name: "Fuse",
-            color: "#ada",
-            shortName: "FU"
-        },
-        {
-            id: "p5",
-            name: "ServUp",
-            color: "#faa",
-            shortName: "SU"
-        }
-    ];
+    projects: project[];
 
     getProjects(): project[] {
+        if (!this.projects) {
+            this.projects = StorageService.get('projects') || [];
+        }
         return this.projects;
     }
 
     addProject(proj: project): void {
         this.projects.push(proj);
+        StorageService.set('projects', this.projects)
     }
 
     saveProject(proj: project): void {
@@ -56,6 +31,7 @@ export class ProjectService {
         if (index !== -1) {
             this.projects[index] = Object.assign({}, proj);
         }
+        StorageService.set('projects', this.projects)
     }
 
     deleteProject(id: string): void {
@@ -64,6 +40,7 @@ export class ProjectService {
         if (index !== -1) {
             this.projects.splice(index, 1);
         }
+        StorageService.set('projects', this.projects)
     }
 
     getById(id: string): number {

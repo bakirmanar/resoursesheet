@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 
+import {StorageService} from './storage.service';
+
 interface user {
     name: string,
     id: string
@@ -7,32 +9,19 @@ interface user {
 
 @Injectable()
 export class UserService {
-    private users: user[] = [
-        {
-            name: "Manar",
-            id: "us1"
-        },
-        {
-            name: "Sergei",
-            id: "us2"
-        },
-        {
-            name: "Ura",
-            id: "us3"
-        },
-        {
-            name: "Alexey2",
-            id: "us4"
-        }
-    ];
+    private users: user[];
 
     getUsers(): user[] {
+        if (!this.users) {
+            this.users = StorageService.get('users') || [];
+        }
         return this.users;
     }
 
 
     addUser(us: user): void {
         this.users.push(us);
+        StorageService.set('users', this.users)
     }
 
     saveUser(us: user): void {
@@ -41,6 +30,7 @@ export class UserService {
         if (index !== -1) {
             this.users[index] = Object.assign({}, us);
         }
+        StorageService.set('users', this.users)
     }
 
     deleteUser(id: string): void {
@@ -49,6 +39,7 @@ export class UserService {
         if (index !== -1) {
             this.users.splice(index, 1);
         }
+        StorageService.set('users', this.users)
     }
 
     private getIndex(id: string): number {

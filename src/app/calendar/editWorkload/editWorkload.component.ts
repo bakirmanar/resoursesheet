@@ -12,10 +12,6 @@ interface project {
     color: string,
     shortName: string
 }
-interface user {
-    name: string,
-    id: string
-}
 interface workload {
     id: string,
     userId: string,
