@@ -1,18 +1,18 @@
-<md-card>
+<mat-card>
     <div *ngIf="!editMode" class="users-nav">
-        <button md-raised-button *ngFor="let user of users; index as i;" class="user-edit-btn"
+        <button mat-raised-button *ngFor="let user of users; index as i;" class="user-edit-btn"
                  (click)="editUser(i)">{{user.name}}</button>
-        <button md-raised-button color="primary" class="user-edit-btn" (click)="addUser()">Add new user</button>
+        <button mat-raised-button color="primary" class="user-edit-btn" (click)="addUser()">Add new user</button>
     </div>
     <form *ngIf="editMode">
-        <md-form-field>
-            <input mdInput [(ngModel)]="editingUser.name" name="userName" placeholder="User name" required />
-        </md-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="editingUser.name" name="userName" placeholder="User name" required />
+        </mat-form-field>
         <div>
-            <button md-raised-button color="primary" (click)="saveUser(editingUser)">Save user</button>
-            <button md-raised-button (click)="cancelEdit()">Cancel</button>
-            <button md-raised-button color="warn" (click)="deleteUser(editingUser.id)">Delete</button>
+            <button mat-raised-button color="primary" (click)="saveUser(editingUser)">Save user</button>
+            <button mat-raised-button (click)="cancelEdit()">Cancel</button>
+            <button mat-raised-button color="warn" (click)="deleteUser(editingUser.id)">Delete</button>
         </div>
     </form>
-</md-card>
+</mat-card>
 

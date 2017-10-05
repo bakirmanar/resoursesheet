@@ -1,10 +1,10 @@
 import {Component, OnInit, Inject, Output, EventEmitter} from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import * as moment from 'moment';
 
 import {UserService} from '../../services/user.service';
-import {WorkloadService} from "../../services/workload.service";
-import {ProjectService} from "../../services/project.service";
+import {WorkloadService} from '../../services/workload.service';
+import {ProjectService} from '../../services/project.service';
 
 interface project {
     id: string,
@@ -35,7 +35,7 @@ export class newWorkloadComponent {
 
     @Output() onAdded = new EventEmitter<workload>();
 
-    constructor(public dialog: MdDialog) {
+    constructor(public dialog: MatDialog) {
     }
 
     ngOnInit(): void {
@@ -62,7 +62,7 @@ export class newWorkloadDialog {
     projects: project[];
     newWorkload: workload;
 
-    constructor(public dialogRef: MdDialogRef<newWorkloadDialog>, @Inject(MD_DIALOG_DATA) public data: any,
+    constructor(public dialogRef: MatDialogRef<newWorkloadDialog>, @Inject(MAT_DIALOG_DATA) public data: any,
                 private userS: UserService, private workloadS: WorkloadService, private projectS: ProjectService,) {
 
     }
@@ -75,12 +75,12 @@ export class newWorkloadDialog {
 
     private resetWorkload(): void {
         this.newWorkload = {
-            id: "",
-            userId: "",
-            projectId: "",
+            id: '',
+            userId: '',
+            projectId: '',
             hours: 0,
-            from: "",
-            to: ""
+            from: '',
+            to: ''
         };
     }
 
@@ -89,7 +89,7 @@ export class newWorkloadDialog {
             && this.newWorkload.hours) {
 
             let newLoad: workload = Object.assign({}, this.newWorkload);
-            newLoad.id = "wl" + moment.now();
+            newLoad.id = 'wl' + moment.now();
             newLoad.from = moment(newLoad.from).format('YYYY/MM/DD');
             newLoad.to = moment(newLoad.to).format('YYYY/MM/DD');
             this.workloadS.addWorkload(newLoad);

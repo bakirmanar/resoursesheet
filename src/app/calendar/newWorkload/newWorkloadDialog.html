@@ -1,37 +1,41 @@
-<h2 md-dialog-title>Add new workload</h2>
-<md-dialog-content>
+<h2 mat-dialog-title>Add new workload</h2>
+<mat-dialog-content>
     <form name="newWorkload" class="example-form">
-        <md-select name="user" placeholder="User" [(ngModel)]="newWorkload.userId" required>
-            <md-option *ngFor="let user of users" [value]="user.id">
-                {{ user.name }}
-            </md-option>
-        </md-select>
-        <md-select name="project" placeholder="Project" [(ngModel)]="newWorkload.projectId" required>
-            <md-option *ngFor="let project of projects" [value]="project.id">
-                {{ project.name }}
-            </md-option>
-        </md-select>
-        <md-form-field>
-            <input mdInput name="hours" type="number" min="0" max="8" [(ngModel)]="newWorkload.hours"
+        <mat-form-field>
+            <mat-select name="user" placeholder="User" [(ngModel)]="newWorkload.userId" required>
+                <mat-option *ngFor="let user of users" [value]="user.id">
+                    {{ user.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select name="project" placeholder="Project" [(ngModel)]="newWorkload.projectId" required>
+                <mat-option *ngFor="let project of projects" [value]="project.id">
+                    {{ project.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="hours" type="number" min="0" max="8" [(ngModel)]="newWorkload.hours"
                    placeholder="Hours" required>
-        </md-form-field>
-        <md-form-field>
-            <input mdInput name="from" [(ngModel)]="newWorkload.from" [mdDatepicker]="newFrom"
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="from" [(ngModel)]="newWorkload.from" [matDatepicker]="newFrom"
                    placeholder="Choose a date from" required>
-            <md-datepicker-toggle mdSuffix [for]="newFrom"></md-datepicker-toggle>
-            <md-datepicker #newFrom></md-datepicker>
-        </md-form-field>
-        <md-form-field>
-            <input mdInput name="to" [(ngModel)]="newWorkload.to" [mdDatepicker]="newTo"
+            <mat-datepicker-toggle matSuffix [for]="newFrom"></mat-datepicker-toggle>
+            <mat-datepicker #newFrom></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="to" [(ngModel)]="newWorkload.to" [matDatepicker]="newTo"
                    placeholder="Choose a date to" required>
-            <md-datepicker-toggle mdSuffix [for]="newTo"></md-datepicker-toggle>
-            <md-datepicker #newTo></md-datepicker>
-        </md-form-field>
+            <mat-datepicker-toggle matSuffix [for]="newTo"></mat-datepicker-toggle>
+            <mat-datepicker #newTo></mat-datepicker>
+        </mat-form-field>
     </form>
-</md-dialog-content>
-<md-dialog-actions>
-    <button md-raised-button color="primary" (click)="saveNewWorkload()">Save</button>
-    <button md-raised-button md-dialog-close>Discard</button>
-</md-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="saveNewWorkload()">Save</button>
+    <button mat-raised-button mat-dialog-close>Discard</button>
+</mat-dialog-actions>
 
 

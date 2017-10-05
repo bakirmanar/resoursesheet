@@ -1,4 +1,4 @@
-<md-card>
+<mat-card>
     <div class="calendar">
         <div class="calendar-side-bar">
             <div *ngFor="let user of users" class="calendar-side-item">
@@ -26,13 +26,13 @@
             </div>
         </div>
         <div class="calendar-footer">
-            <button md-raised-button color="primary" (click)="loadPrevMonth()">
+            <button mat-raised-button color="primary" (click)="loadPrevMonth()">
                 Load previous
             </button>
-            <button md-raised-button color="primary" (click)="loadNextMonth()">
+            <button mat-raised-button color="primary" (click)="loadNextMonth()">
                 Load next
             </button>
         </div>
     </div>
-</md-card>
+</mat-card>
 <newWorkload (onAdded)="onWorkloadAdded($event)"></newWorkload>

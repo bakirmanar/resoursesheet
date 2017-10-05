@@ -1,33 +1,35 @@
-<h2 md-dialog-title>Edit workload for {{userName}}</h2>
-<md-dialog-content>
+<h2 mat-dialog-title>Edit workload for {{userName}}</h2>
+<mat-dialog-content>
     <form name="editWorkload" class="example-form">
-        <md-select name="project" placeholder="Project" [(ngModel)]="load.projectId" required>
-            <md-option *ngFor="let project of projects" [value]="project.id">
-                {{ project.name }}
-            </md-option>
-        </md-select>
-        <md-form-field>
-            <input mdInput name="hours" type="number" min="0" max="8" [(ngModel)]="load.hours"
+        <mat-form-field>
+            <mat-select name="project" placeholder="Project" [(ngModel)]="load.projectId" required>
+                <mat-option *ngFor="let project of projects" [value]="project.id">
+                    {{ project.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="hours" type="number" min="0" max="8" [(ngModel)]="load.hours"
                    placeholder="Hours" required>
-        </md-form-field>
-        <md-form-field>
-            <input mdInput name="from" [(ngModel)]="loadFrom" [mdDatepicker]="from"
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="from" [(ngModel)]="loadFrom" [matDatepicker]="from"
                    placeholder="Choose a date from" required>
-            <md-datepicker-toggle mdSuffix [for]="from"></md-datepicker-toggle>
-            <md-datepicker #from></md-datepicker>
-        </md-form-field>
-        <md-form-field>
-            <input mdInput name="to" [(ngModel)]="loadTo" [mdDatepicker]="to"
+            <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+            <mat-datepicker #from></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput name="to" [(ngModel)]="loadTo" [matDatepicker]="to"
                    placeholder="Choose a date to" required>
-            <md-datepicker-toggle mdSuffix [for]="to"></md-datepicker-toggle>
-            <md-datepicker #to></md-datepicker>
-        </md-form-field>
+            <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+            <mat-datepicker #to></mat-datepicker>
+        </mat-form-field>
     </form>
-</md-dialog-content>
-<md-dialog-actions>
-    <button md-raised-button color="primary" (click)="saveWorkload()">Save</button>
-    <button md-raised-button md-dialog-close>Discard</button>
-    <button md-raised-button color="warn" (click)="deleteWorkload()">Delete</button>
-</md-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="saveWorkload()">Save</button>
+    <button mat-raised-button mat-dialog-close>Discard</button>
+    <button mat-raised-button color="warn" (click)="deleteWorkload()">Delete</button>
+</mat-dialog-actions>
 
 

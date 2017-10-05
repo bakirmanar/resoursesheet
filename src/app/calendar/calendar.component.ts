@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 
 import {editWorkloadDialog} from './editWorkload/editWorkload.component';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 import {CalendarService} from '../services/calendar.service';
@@ -58,7 +58,7 @@ export class calendarComponent {
     loadingOnStart: boolean;
 
     constructor(private calendarS: CalendarService, private userS: UserService,
-                private workloadS: WorkloadService, private projectS: ProjectService, public dialog: MdDialog) {
+                private workloadS: WorkloadService, private projectS: ProjectService, public dialog: MatDialog) {
         this.calendarBody = document.getElementsByClassName("calendar-body");
     }
 
@@ -120,7 +120,7 @@ export class calendarComponent {
 
         for (let m = from; m < to; m.month(m.month() + 1)) {
             let monthStr: string = m.format("YYYY/MM");
-            if(this.months[monthStr]) {
+            if (this.months[monthStr]) {
                 this.putWorkloadsInMonth(load, monthStr, false);
             }
         }
@@ -145,7 +145,7 @@ export class calendarComponent {
         }
     }
 
-    private redrawWorkload(load:workload, isDeleted:boolean):void {
+    private redrawWorkload(load: workload, isDeleted: boolean): void {
         _.each(this.months, (item, monthStr) => {
             this.putWorkloadsInMonth(load, monthStr, isDeleted);
         });

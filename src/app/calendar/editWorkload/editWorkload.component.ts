@@ -1,10 +1,10 @@
 import {Component, OnInit, Inject, Output, EventEmitter} from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import * as moment from 'moment';
 
 import {UserService} from '../../services/user.service';
-import {WorkloadService} from "../../services/workload.service";
-import {ProjectService} from "../../services/project.service";
+import {WorkloadService} from '../../services/workload.service';
+import {ProjectService} from '../../services/project.service';
 
 interface project {
     id: string,
@@ -32,7 +32,7 @@ export class editWorkloadDialog {
     loadFrom: any;
     userName: string;
 
-    constructor(public dialogRef: MdDialogRef<editWorkloadDialog>, @Inject(MD_DIALOG_DATA) public data: any,
+    constructor(public dialogRef: MatDialogRef<editWorkloadDialog>, @Inject(MAT_DIALOG_DATA) public data: any,
                 private userS: UserService, private workloadS: WorkloadService, private projectS: ProjectService,) {
 
     }

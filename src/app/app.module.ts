@@ -2,16 +2,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCardModule, MdInputModule, MdTableModule, MdToolbarModule, MatDialogModule,
-    MatIconModule, MatSelectModule, MatDatepickerModule, MdNativeDateModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatInputModule, MatTableModule, MatToolbarModule, MatDialogModule,
+    MatIconModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {FormsModule, NgModel} from '@angular/forms';
 
 import {AppComponent} from './app.component';
-import {calendarComponent} from "./calendar/calendar.component";
-import {newWorkloadComponent, newWorkloadDialog} from "./calendar/newWorkload/newWorkload.component";
-import {editWorkloadDialog} from "./calendar/editWorkload/editWorkload.component";
-import {projectComponent} from "./projects/projects.component";
-import {userComponent} from "./users/users.component";
+import {calendarComponent} from './calendar/calendar.component';
+import {newWorkloadComponent, newWorkloadDialog} from './calendar/newWorkload/newWorkload.component';
+import {editWorkloadDialog} from './calendar/editWorkload/editWorkload.component';
+import {projectComponent} from './projects/projects.component';
+import {userComponent} from './users/users.component';
 
 import {CalendarService} from './services/calendar.service';
 import {UserService} from './services/user.service';
@@ -20,7 +20,7 @@ import {ProjectService} from './services/project.service';
 import {WorkloadService} from './services/workload.service';
 
 
-let routes = [
+const routes = [
     {
         path: '',
         redirectTo: '/calendar',
@@ -40,18 +40,18 @@ let routes = [
     }
 ];
 
-let imports = [
+const imports = [
     BrowserModule,
     BrowserAnimationsModule,
-    MdButtonModule,
-    MdCardModule,
-    MdInputModule,
-    MdTableModule,
-    MdToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatTableModule,
+    MatToolbarModule,
     MatSelectModule,
     MatDatepickerModule,
     MatIconModule,
-    MdNativeDateModule,
+    MatNativeDateModule,
     FormsModule,
     MatDialogModule,
     RouterModule.forRoot(routes)
